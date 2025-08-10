@@ -17,6 +17,9 @@ export default function MostrarInformacionClima() {
   // Referencia del canvas
   const canvasRef = useRef(null);
 
+  const onErroImage = () => {
+    setImagenClima("/images/ciudades/buenos-aires.webp");
+  };
   // Función para dibujar termómetro
   const CrearTermometro = () => {
     const canvas = canvasRef.current;
@@ -154,6 +157,7 @@ export default function MostrarInformacionClima() {
               }`}
               loading="lazy"
               src={imagenClima}
+              onError={onErroImage}
             />
           )}
         </div>

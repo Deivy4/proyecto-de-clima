@@ -13,7 +13,10 @@ function App() {
   return (
     <>
       <main className=" flex justify-center items-center h-dvh bg-gray-500">
-        <div className="max-w-[450px] max-h-[350px] shadow-2xs bg-linear-to-bl from-violet-500 to-fuchsia-500 rounded justify-around min-w-[400px] min-h-[450px] flex w-2/4 h-2/3 bg-white p-4 flex-col items-center gap-4">
+        <div className="max-w-450px] max-h-[500px] shadow-2xs bg-linear-to-bl from-violet-500 to-fuchsia-500 rounded justify-around min-w-[400px] min-h-[500px] flex w-2/4 h-2/3 bg-white p-4 flex-col items-start gap-4">
+          <h2 className=" -mb-6 font-poppins text-center w-full text-white text-[18px]">
+            Temperaturas de las provincias de Argentina
+          </h2>
           <MostrarInformacionClima />
           <select
             value={ciudadSeleccionada}

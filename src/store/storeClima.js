@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
-  ciudad: "Buenos Aires",
+  ciudad: { name: "Buenos Aires", pathImage: "" },
   setCiudad: (ciudad) => set({ ciudad }),
 }));
 

@@ -13,6 +13,7 @@ export default function MostrarInformacionClima() {
   const [grados, setGrados] = useState(0);
   const [targetGrados, setTargetGrados] = useState(0);
 
+  const [visibleImage, setVisibleImage] = useState(false);
   // Referencia del canvas
   const canvasRef = useRef(null);
 
@@ -55,8 +56,8 @@ export default function MostrarInformacionClima() {
     );
 
     // Mercurio
-    const minTemp = -20;
-    const maxTemp = 50;
+    const minTemp = -10;
+    const maxTemp = 40;
     const clampedGrados = Math.min(Math.max(grados, minTemp), maxTemp);
     const mercuryHeight =
       ((clampedGrados - minTemp) / (maxTemp - minTemp)) * tubeHeight;
@@ -92,11 +93,11 @@ export default function MostrarInformacionClima() {
     try {
       const response = await axios.get(
         `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${encodeURIComponent(
-          ciudadBusqueda
+          ciudadBusqueda.name
         )}&aqi=no`
       );
       setClima(response.data);
-      setImagenClima("/Ciudades/mendoza.webp");
+      setImagenClima(ciudad.pathImage);
     } catch (error) {
       console.error("Error al obtener los datos del clima:", error);
     }
@@ -134,17 +135,27 @@ export default function MostrarInformacionClima() {
 
     return () => cancelAnimationFrame(animationFrameId);
   }, [targetGrados]);
+  useEffect(() => {
+    setVisibleImage(true);
+    setTimeout(() => {
+      setVisibleImage(false);
+    }, 2000);
+  }, [imagenClima]);
 
   return (
     <div className="w-full items-center flex justify-around gap-2">
       <canvas ref={canvasRef} width={80} height={340} />
       {clima && (
         <div className="w-3/4">
-          <img
-            className="border shadow shadow-white min-w-60"
-            loading="lazy"
-            src={imagenClima}
-          />
+          {imagenClima && (
+            <img
+              className={`border shadow shadow-white min-w-60 ${
+                visibleImage ? "img-ciudad-fadeIn" : ""
+              }`}
+              loading="lazy"
+              src={imagenClima}
+            />
+          )}
         </div>
       )}
     </div>

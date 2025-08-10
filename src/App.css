@@ -1,0 +1,38 @@
+.select-provincias:focus{
+    color: black;
+    border: none;
+  outline: none;
+  background: none;
+  background-color: #f4f4f4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.select-provincias{
+    appearance: none;       /* Navegadores modernos */
+  -webkit-appearance: none; /* Safari y Chrome */
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  background-color: #f4f4f4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+select option {
+  max-height: 150px;
+}
+
+.img-ciudad-fadeIn{
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

@@ -6,9 +6,9 @@ import storeClima from "./store/storeClima";
 function App() {
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState("Buenos Aires");
   const { setCiudad } = storeClima();
-  const manejarCambioCiudad = (nuevaCiudad) => {
-    setCiudadSeleccionada(nuevaCiudad);
-    setCiudad(nuevaCiudad);
+  const manejarCambioCiudad = (nuevaCiudadId) => {
+    setCiudadSeleccionada(nuevaCiudadId);
+    setCiudad(ciudades.find((x) => x.id == nuevaCiudadId));
   };
   return (
     <>
@@ -18,11 +18,11 @@ function App() {
           <select
             value={ciudadSeleccionada}
             onChange={(e) => manejarCambioCiudad(e.target.value)}
-            className="border border-gray-300 rounded p-2 w-full"
+            className="border border-gray-300 rounded p-2 w-full select-provincias"
           >
             {ciudades.map((ciudad, index) => (
-              <option key={index} value={ciudad.ciudad}>
-                {ciudad.ciudad}
+              <option key={index} value={ciudad.id}>
+                {ciudad.name}
               </option>
             ))}
           </select>

@@ -21,7 +21,7 @@ function App() {
           <select
             value={ciudadSeleccionada}
             onChange={(e) => manejarCambioCiudad(e.target.value)}
-            className="border border-gray-300 rounded p-2 w-full select-provincias"
+            className="font-poppins border border-gray-300 rounded p-2 w-full select-provincias"
           >
             {ciudades.map((ciudad, index) => (
               <option key={index} value={ciudad.id}>

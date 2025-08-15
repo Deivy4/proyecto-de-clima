@@ -7,14 +7,12 @@ const API_KEY = import.meta.env.VITE_APIKEY_CLIMA;
 export default function MostrarInformacionClima() {
   const ciudad = storeClima((state) => state.ciudad);
 
-  // Estados
   const [clima, setClima] = useState(null);
   const [imagenClima, setImagenClima] = useState(null);
   const [grados, setGrados] = useState(0);
   const [targetGrados, setTargetGrados] = useState(0);
 
   const [visibleImage, setVisibleImage] = useState(false);
-  // Referencia del canvas
   const canvasRef = useRef(null);
 
   const onErroImage = () => {
@@ -106,22 +104,18 @@ export default function MostrarInformacionClima() {
     }
   };
 
-  // useEffect para traer clima en montaje y cuando cambia ciudad
   useEffect(() => {
     fetchClima(ciudad);
   }, [ciudad]);
 
-  // useEffect para dibujar termómetro cuando cambia grados
   useEffect(() => {
     CrearTermometro();
   }, [grados]);
 
-  // useEffect para actualizar targetGrados cuando cambia clima
   useEffect(() => {
     if (clima) setTargetGrados(clima.current.temp_c);
   }, [clima]);
 
-  // useEffect para animar temperatura suavemente
   useEffect(() => {
     let animationFrameId;
 
@@ -138,6 +132,7 @@ export default function MostrarInformacionClima() {
 
     return () => cancelAnimationFrame(animationFrameId);
   }, [targetGrados]);
+
   useEffect(() => {
     setVisibleImage(true);
     setTimeout(() => {
